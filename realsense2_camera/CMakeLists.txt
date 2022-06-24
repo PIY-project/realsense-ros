@@ -160,3 +160,7 @@ install(FILES nodelet_plugins.xml
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
     )
 
+    add_executable(realsense_bridge_node src/realsense_bridge.cpp)
+    add_dependencies(realsense_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+    target_link_libraries(realsense_bridge_node ${catkin_LIBRARIES})
+    
