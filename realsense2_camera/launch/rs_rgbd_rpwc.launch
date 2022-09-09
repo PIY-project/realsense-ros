@@ -1,7 +1,7 @@
  
 <launch>
 
-<arg name="ns_setup" default="setup1/sensor1"/>
+<arg name="ns_setup" default="setup1/sensor2"/>
 
 <group ns="$(arg ns_setup)">
 	<include file="$(find realsense2_camera)/launch/rs_rgbd.launch">
