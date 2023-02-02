@@ -1,0 +1,15 @@
+ 
+<launch>
+
+<arg name="ns_setup" default="setup1/sensor1"/>
+
+<group ns="$(arg ns_setup)">
+	<include file="$(find realsense2_camera)/launch/rs_rgbd.launch">
+		<arg name="camera"          value="camera"/>
+		<!-- <arg name="serial_no"          value="141722063685"/> -->
+		<arg name="json_file_path"     value="$(find realsense2_camera)/json_config/H_density.json"/>
+	</include>
+
+	<node pkg="realsense2_camera" name="realsense_bridge" type="realsense_bridge_node" output="screen"/>
+</group>
+</launch>
