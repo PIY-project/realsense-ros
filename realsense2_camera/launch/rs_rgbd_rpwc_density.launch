@@ -5,6 +5,7 @@
 
 <group ns="$(arg ns_setup)">
 	<include file="$(find realsense2_camera)/launch/rs_rgbd.launch">
+		<arg name="tf_prefix" value="$(arg ns_setup_sensor)/$(arg camera_name)"/>
 		<arg name="camera"          value="camera"/>
 		<!-- <arg name="serial_no"          value="141722063685"/> -->
 		<arg name="json_file_path"     value="$(find realsense2_camera)/json_config/H_density.json"/>

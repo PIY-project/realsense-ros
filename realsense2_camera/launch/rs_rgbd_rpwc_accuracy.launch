@@ -1,10 +1,15 @@
  
 <launch>
 
-<arg name="ns_setup" default="setup1/sensor1"/>
+<arg name="ns_setup" default="setup1"/>
 
-<group ns="$(arg ns_setup)">
+<arg name="ns_sensor" default="sensor1"/>
+<arg name="ns_setup_sensor" default="$(arg ns_setup)/$(arg ns_sensor)"/>
+<arg name="camera_name"              		default="camera"/>		<!-- Note: Replace with camera name -->
+
+<group ns="$(arg ns_setup_sensor)">
 	<include file="$(find realsense2_camera)/launch/rs_rgbd.launch">
+		<arg name="tf_prefix" value="$(arg ns_setup_sensor)/$(arg camera_name)"/>
 		<arg name="camera"          value="camera"/>
 		<!-- <arg name="serial_no"          value="141722063685"/> -->
 		<arg name="json_file_path"     value="$(find realsense2_camera)/json_config/H_acc.json"/>
