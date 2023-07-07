@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 	ros::NodeHandle nh;
 	ros::Rate rate(5);
 
-	ros::ServiceServer serverCamera = nh.advertiseService("cameraRGBD", callbackServerCamera);
+	ros::ServiceServer serverCamera = nh.advertiseService("sensorMeas", callbackServerCamera);
 	ros::ServiceServer serverCameraInfo = nh.advertiseService("camera/info", callbackServerCameraInfo);
 
     image_transport::ImageTransport it(nh);

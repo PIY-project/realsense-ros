@@ -785,7 +785,9 @@ void BaseRealSenseNode::getParameters()
         ROS_DEBUG_STREAM("frame_id: reading parameter:" << param_name << " : " << _frame_id[stream]);
         param_name = static_cast<std::ostringstream&&>(std::ostringstream() << STREAM_NAME(stream) << "_optical_frame_id").str();
         _pnh.param(param_name, _optical_frame_id[stream], OPTICAL_FRAME_ID(stream));
+        if(_optical_frame_id[stream][0] == '/')_optical_frame_id[stream].erase(0,1);
         ROS_DEBUG_STREAM("optical: reading parameter:" << param_name << " : " << _optical_frame_id[stream]);
+        std::cout<< _optical_frame_id[stream] << std::endl;
     }
 
     std::string unite_imu_method_str("");
