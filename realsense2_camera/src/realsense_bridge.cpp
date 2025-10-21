@@ -10,36 +10,36 @@
 #include <sensor_msgs/Image.h>
 #include <std_srvs/Empty.h>
 
-sensor_msgs::PointCloud2 point_cloud_;
-sensor_msgs::Image image_;
-sensor_msgs::CameraInfo cam_info_;
+sensor_msgs::PointCloud2::ConstPtr point_cloud_;
+sensor_msgs::Image::ConstPtr image_;
+sensor_msgs::CameraInfo::ConstPtr cam_info_;
 
 bool callbackServerCamera(rpwc_msgs::PCloudImageReq::Request  &req, rpwc_msgs::PCloudImageReq::Response &res)
 {
-    res.data.pointCloud = point_cloud_;
-    res.data.image = image_;
+    res.data.pointCloud = *point_cloud_;
+    res.data.image = *image_;
 	return true;
 }
 
 bool callbackServerCameraInfo(rpwc_msgs::cameraInfo::Request  &req, rpwc_msgs::cameraInfo::Response &res)
 {
-	res.cameraInfo = cam_info_;
+	res.cameraInfo = *cam_info_;
 	return true;
 }
 
 void callback_image(const sensor_msgs::ImageConstPtr& msg)
 {
-  image_ = *msg;
+  image_ = msg;
 }
 
 void callback_point_cloud (const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
-	point_cloud_ = *cloud_msg;
+	point_cloud_ = cloud_msg;
 }
 
 void callback_camera_info (const sensor_msgs::CameraInfoConstPtr& info_msg)
 {
-	cam_info_ = *info_msg;
+	cam_info_ = info_msg;
 }
 
 int main(int argc, char** argv)
@@ -65,8 +65,8 @@ int main(int argc, char** argv)
 	while (ros::ok())
 	{
 		rpwc_msgs::PointCloudImage tmp_data;
-		tmp_data.pointCloud = point_cloud_;
-		tmp_data.image = image_;
+		tmp_data.pointCloud = *point_cloud_;
+		tmp_data.image = *image_;
 		PCloudImage.publish(tmp_data);
 		ros::spinOnce();
 		rate.sleep();
