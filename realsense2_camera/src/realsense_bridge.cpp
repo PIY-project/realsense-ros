@@ -10,9 +10,10 @@
 #include <sensor_msgs/Image.h>
 #include <std_srvs/Empty.h>
 
-sensor_msgs::PointCloud2::ConstPtr point_cloud_;
-sensor_msgs::Image::ConstPtr image_;
-sensor_msgs::CameraInfo::ConstPtr cam_info_;
+sensor_msgs::PointCloud2::ConstPtr point_cloud_ = boost::make_shared<sensor_msgs::PointCloud2>();
+sensor_msgs::Image::ConstPtr image_ = boost::make_shared<sensor_msgs::Image>();
+sensor_msgs::CameraInfo::ConstPtr cam_info_ = boost::make_shared<sensor_msgs::CameraInfo>();
+
 
 bool callbackServerCamera(rpwc_msgs::PCloudImageReq::Request  &req, rpwc_msgs::PCloudImageReq::Response &res)
 {
@@ -60,16 +61,17 @@ int main(int argc, char** argv)
 	image_transport::Subscriber sub_image = it.subscribe("camera/color/image_rect_color", 1, &callback_image);
     ros::Subscriber sub_point_cloud = nh.subscribe("camera/depth_registered/points", 1, &callback_point_cloud);
     ros::Subscriber sub_camera_info = nh.subscribe("camera/color/camera_info", 1, &callback_camera_info);
-	ros::Publisher PCloudImage = nh.advertise<rpwc_msgs::PointCloudImage>("cameraRGBD", 1);
+	// ros::Publisher PCloudImage = nh.advertise<rpwc_msgs::PointCloudImage>("cameraRGBD", 1);
 	
-	while (ros::ok())
-	{
-		rpwc_msgs::PointCloudImage tmp_data;
-		tmp_data.pointCloud = *point_cloud_;
-		tmp_data.image = *image_;
-		PCloudImage.publish(tmp_data);
-		ros::spinOnce();
-		rate.sleep();
-	}
+	// while (ros::ok())
+	// {
+	// 	rpwc_msgs::PointCloudImage tmp_data;
+	// 	tmp_data.pointCloud = *point_cloud_;
+	// 	tmp_data.image = *image_;
+	// 	PCloudImage.publish(tmp_data);
+	// 	ros::spinOnce();
+	// 	rate.sleep();
+	// }
+	ros::spin();
 	return 0;
 }
