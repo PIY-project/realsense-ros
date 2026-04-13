@@ -34,18 +34,21 @@ bool callbackServerCameraInfo(rpwc_msgs::cameraInfo::Request  &req, rpwc_msgs::c
 bool callbackServerSetSettings(rpwc_msgs::setSettingsCamera::Request &req, rpwc_msgs::setSettingsCamera::Response &res)
 {
 	ROS_WARN("Funzione non supportata dalla camera!");
+	res.success.data = true;
 	return true;
 }
 
 bool callbackServerGetSettings(rpwc_msgs::getSettingsCamera::Request& req, rpwc_msgs::getSettingsCamera::Response& res)
 {
 	ROS_WARN("Funzione non supportata dalla camera!");
+	res.success.data = true;
 	return true;
 }
 
 bool callbackServerSuggestSettings(rpwc_msgs::suggestSettingsCamera::Request& req, rpwc_msgs::suggestSettingsCamera::Response& res)
 {
 	ROS_WARN("Funzione non supportata dalla camera!");
+	res.success.data = true;
 	return true;
 }
 
