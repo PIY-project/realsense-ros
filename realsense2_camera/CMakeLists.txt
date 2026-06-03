@@ -12,6 +12,7 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 find_package(catkin REQUIRED COMPONENTS
     message_generation
     nav_msgs
+    rpwc_msgs
     roscpp
     sensor_msgs
     std_msgs
@@ -95,7 +96,7 @@ include_directories(
 catkin_package(
     INCLUDE_DIRS include
     LIBRARIES ${PROJECT_NAME}
-    CATKIN_DEPENDS message_runtime roscpp sensor_msgs std_msgs
+    CATKIN_DEPENDS message_runtime roscpp rpwc_msgs sensor_msgs std_msgs
     nodelet
     cv_bridge
     image_transport

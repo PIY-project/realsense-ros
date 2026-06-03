@@ -19,6 +19,7 @@
   <depend>nav_msgs</depend>
   <depend>nodelet</depend>  
   <depend>genmsg</depend>
+  <depend>rpwc_msgs</depend>
   <depend>roscpp</depend>
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
